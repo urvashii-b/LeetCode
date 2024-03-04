@@ -1,6 +1,8 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
+        /* 
+        BRUTE FORCE
         set<int> st;
         for(int i=0;i<nums.size();i++){
             st.insert(nums[i]);
@@ -11,7 +13,9 @@ public:
             index++;
         }
         return index;
-        /*
+        
+        OPTIMAL
+        */
         int i = 0;
         int n = nums.size();
         for(int j=1;j<n;j++){
@@ -21,6 +25,6 @@ public:
             }
         }
         return (i+1); 
-        */
+        
     }
 };
