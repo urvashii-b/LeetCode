@@ -11,7 +11,6 @@ public:
         sort(nums1.begin(),nums1.end());
         
         2. Basic Approach
-        */
         vector<int> ans;
         int i = 0;
         int j = 0;
@@ -33,6 +32,29 @@ public:
         }
         for(int i=0;i<ans.size();i++){
             nums1[i]=ans[i];
+        }
+        
+        3. Without extra space - approach 1
+        */
+        int left = m-1;
+        int right = n-1;
+        int end = m+n-1;
+        while(left>=0 && right>=0){
+            if(nums1[left]>nums2[right]){
+                nums1[end]=nums1[left];
+                left--;
+            }
+            else{
+                nums1[end]=nums2[right];
+                right--;
+            }
+            end--;
+        } 
+        while(right>=0){
+            nums1[end]=nums2[right];
+            end--;
+            right--;
+            
         }
     }
 };
