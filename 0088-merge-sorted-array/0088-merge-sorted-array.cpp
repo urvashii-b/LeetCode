@@ -3,7 +3,6 @@ public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         /*
         1. STL: 
-        
         for(int j=0,i=m;j<n;j++){
             nums1[i]=nums2[j];
             i++;
@@ -47,14 +46,14 @@ public:
             else{
                 nums1[end]=nums2[right];
                 right--;
+               
             }
             end--;
-        } 
+        }
         while(right>=0){
             nums1[end]=nums2[right];
             end--;
             right--;
-            
         }
     }
 };
