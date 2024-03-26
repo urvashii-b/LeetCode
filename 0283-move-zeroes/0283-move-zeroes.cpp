@@ -33,7 +33,7 @@ public:
                 break;
             }
         }
-        // if no '0' found, then return
+        // if no '0' found, then do nothing
         if(j==-1){
             return;
         }
