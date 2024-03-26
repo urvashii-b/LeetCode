@@ -22,7 +22,7 @@ public:
             nums[i]=0;
         } 
         
-        2. OPTIMAL = 
+        2. OPTIMAL = O(N) as we are traversing the array once
         
         */
         int j = -1;
@@ -38,6 +38,7 @@ public:
             return;
         }
         int n = nums.size();
+        // swap if any non zero element is encountered
         for(int i=j+1;i<n;i++){
             if(nums[i]!=0){
                 swap(nums[i],nums[j]);
