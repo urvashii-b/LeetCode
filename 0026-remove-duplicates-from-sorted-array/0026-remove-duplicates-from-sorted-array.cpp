@@ -19,7 +19,7 @@ public:
         // size of set is the number of unique elements in the array
         return k;
         
-        OPTIMAL = 
+        OPTIMAL = O(N)
         */
         int i = 0;
         int n = nums.size();
