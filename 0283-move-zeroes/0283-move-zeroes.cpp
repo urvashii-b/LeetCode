@@ -2,19 +2,9 @@ class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         /*
-        1. BRUTE FORCE
-        int j = -1;
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]==0){
-                j=nums[i];
-                break;
-            }
-        }
-        if(j==-1){
-            return;
-        }
+        1. BRUTE FORCE = O(N) + O(X) + O(N-X) ~ O(2*N)
         
-        */
+        // store all the non zero elements in a temporary array 
         vector<int> temp;
         int n = nums.size();
         for(int i=0;i<n;i++){
@@ -23,11 +13,36 @@ public:
             }
         }
         int nz = temp.size();
+        // update the non zero elements in the original array
         for(int i=0;i<nz;i++){
             nums[i]=temp[i];
         }
+        // add zeroes in the leftover places
         for(int i=nz;i<n;i++){
             nums[i]=0;
-        }   
+        } 
+        
+        2. OPTIMAL = 
+        
+        */
+        int j = -1;
+        // find the first '0' element and point j to that location
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==0){
+                j=i;
+                break;
+            }
+        }
+        // if no '0' found, then return
+        if(j==-1){
+            return;
+        }
+        int n = nums.size();
+        for(int i=j+1;i<n;i++){
+            if(nums[i]!=0){
+                swap(nums[i],nums[j]);
+                j++;
+            }
+        }    
     }
 };
