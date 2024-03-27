@@ -17,8 +17,8 @@ public:
         
         2. OPTIMAL
         1 5 7 8 9 6 2 and k = 3
-        7 5 1..2 6 9 8 to
-        8 9 6 2 1 5 7
+        2 6 9 8 7 5 1
+        9 6 2 1 5 7 8
         */
         int n=nums.size();
         k = k % n;
