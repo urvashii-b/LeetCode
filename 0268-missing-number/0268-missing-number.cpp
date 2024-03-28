@@ -33,10 +33,21 @@ public:
         
         3. OPTIMAL1 - SUM
         
-        4. OPTIMAL2 - XOR
-        */
         int n = nums.size();
         int Tsum = (n*(n+1))/2;
         return  Tsum - accumulate(nums.begin(),nums.end(),0);
+        
+        4. OPTIMAL2 - XOR
+        */
+        
+        int n = nums.size();
+        int ans =0;
+        for(int i =1;i<=n;i++){
+            ans = ans ^ i;
+        }
+        for(int i =0;i<nums.size();i++){
+            ans = ans^nums[i];
+        }
+        return ans;
     }
 };
