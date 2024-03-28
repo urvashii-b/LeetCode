@@ -20,9 +20,6 @@ public:
         
         2. BETTER - O(2n)
         
-        3. OPTIMAL
-        
-        */
         int hash[10001]={0};
         for(int i=0;i<nums.size();i++){
             hash[nums[i]]++;
@@ -33,5 +30,13 @@ public:
             }
         }
         return -1;
+        
+        3. OPTIMAL1 - SUM
+        
+        4. OPTIMAL2 - XOR
+        */
+        int n = nums.size();
+        int Tsum = (n*(n+1))/2;
+        return  Tsum - accumulate(nums.begin(),nums.end(),0);
     }
 };
