@@ -35,7 +35,7 @@ public:
         return -1;
         
         3. MAP - O(N*logM) + O(M) where M (size of map) = N/2 + 1
-        */
+        
         int n = nums.size();
         // map<long long, int> mpp; ---> depending upon size of elements
         map<int, int> mpp;
@@ -48,5 +48,16 @@ public:
             }
         }
         return -1;
+        
+        4. OPTIMAL - XOR - O(N)
+        2 2 3 4 5 4 5
+        IMP!! ---> a^a = 0 and 0^a = a
+        */
+        int xorr = 0;
+        int n = nums.size();
+        for(int i=0;i<n;i++){
+            xorr = xorr ^ nums[i];
+        }
+        return xorr;
     }
 };
