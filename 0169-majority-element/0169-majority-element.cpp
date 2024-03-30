@@ -2,13 +2,12 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         /*
-        1. MID ELE IN SORTED ARRAY
+        1. Middle element in sorted array
         sort(nums.begin(),nums.end());
         int n = nums.size();
         return nums[n/2];
         
-        2.HASHMAP
-        */
+        2.Hashmap
         int n = nums.size();
         unordered_map<int,int> mpp;
         for(int i=0;i<n;i++){
@@ -21,5 +20,21 @@ public:
             }
         }
         return -1;
+        
+        3. Moore Voting Algorithm
+        if there is a majority element in an array, it will always remain in the lead, even           after encountering other elements.
+        */
+        int cnt = 0, candidate = 0;
+        for(int i:nums){
+            if(cnt==0){
+                candidate = i;
+            }
+            if(i==candidate){
+                cnt++;
+            }else{
+                cnt--;
+            }
+        }
+        return candidate;
     }
 };
