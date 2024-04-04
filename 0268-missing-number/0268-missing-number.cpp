@@ -2,7 +2,7 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
         /*
-        1. BRUTE - O(n^2)
+        1. BRUTE - O(n^2) - NESTED FOR LOOPS
         
         for(int i=1;i<=nums.size();i++){
             int flag = 0;
@@ -18,7 +18,7 @@ public:
         }
         return -1;
         
-        2. BETTER - O(2n)
+        2. BETTER -  O(2n) - HASHING
         
         int hash[10001]={0};
         for(int i=0;i<nums.size();i++){
@@ -31,14 +31,13 @@ public:
         }
         return -1;
         
-        3. OPTIMAL1 - SUM
+        3. OPTIMAL1 - O(n) - SUM
         
         int n = nums.size();
         int Tsum = (n*(n+1))/2;
         return  Tsum - accumulate(nums.begin(),nums.end(),0);
         
-        4. OPTIMAL2 - XOR
-        */
+        4.a. OPTIMAL2 - O(2n) - XOR
         int n = nums.size();
         int ans = 0;
         for(int i=1;i<=n;i++){
@@ -48,5 +47,16 @@ public:
             ans = ans^nums[i];
         }
         return ans;
+        
+        4.b. OPTIMAL2 - O(n) - XOR
+        */
+        int n = nums.size(); 
+        int xor1 = 0, xor2 = 0;
+        for(int i=0;i<=n-1;i++){
+            xor1 = xor1^nums[i];
+            xor2 = xor2^i;
+        }
+        xor2 = xor2^n;
+        return xor1^xor2;
     }
 };
