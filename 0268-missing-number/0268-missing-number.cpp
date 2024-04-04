@@ -3,7 +3,6 @@ public:
     int missingNumber(vector<int>& nums) {
         /*
         1. BRUTE - O(n^2) - NESTED FOR LOOPS
-        
         for(int i=1;i<=nums.size();i++){
             int flag = 0;
             for(int j = 0;j<nums.size()-1;j++){
@@ -19,7 +18,6 @@ public:
         return -1;
         
         2. BETTER -  O(2n) - HASHING
-        
         int hash[10001]={0};
         for(int i=0;i<nums.size();i++){
             hash[nums[i]]++;
@@ -32,7 +30,6 @@ public:
         return -1;
         
         3. OPTIMAL1 - O(n) - SUM
-        
         int n = nums.size();
         int Tsum = (n*(n+1))/2;
         return  Tsum - accumulate(nums.begin(),nums.end(),0);
