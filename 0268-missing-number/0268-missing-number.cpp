@@ -37,7 +37,7 @@ public:
         int Tsum = (n*(n+1))/2;
         return  Tsum - accumulate(nums.begin(),nums.end(),0);
         
-        4.a. OPTIMAL2 - O(2n) - XOR
+        4.a. OPTIMAL2 - O(2n) - XOR {two for loops}
         int n = nums.size();
         int ans = 0;
         for(int i=1;i<=n;i++){
@@ -48,7 +48,7 @@ public:
         }
         return ans;
         
-        4.b. OPTIMAL2 - O(n) - XOR
+        4.b. OPTIMAL2 - O(n) - XOR {one for loop}
         */
         int n = nums.size(); 
         int xor1 = 0, xor2 = 0;
