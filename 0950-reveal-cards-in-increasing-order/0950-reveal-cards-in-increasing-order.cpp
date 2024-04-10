@@ -1,23 +1,32 @@
 class Solution {
 public:
     vector<int> deckRevealedIncreasing(vector<int>& deck) {
-        int n = deck.size();
+        /* 
+        LOGIC: we need to reveal the odd cards and place even cards in the end,
+        the revelation should be alternate and in increasing order of numbers
+        
+        QUEUE: 
+        ex: [17,13,11,2,3,5,7]
+        */
+        int n = deck.size(); 
         vector<int> res(n);
-        bool skip = false; // revealing first card
-        int indexInDeck = 0;
-        int indexInResult = 0;
-        
-        sort(deck.begin(),deck.end());
-        
-        while(indexInDeck<n){
-            if(res[indexInResult]==0){
-                if(!skip){
-                    res[indexInResult]=deck[indexInDeck];
-                    indexInDeck++;
-                }
-                skip = !skip;
+        sort(deck.begin(),deck.end()); // [2,3,5,7,11,13,17] 
+           //  ---> to be placed at index:[0,.,1,..,2,..,3]
+        queue<int> q;
+        for(int i=0;i<n;i++){
+            q.push(i); // pushing all the indexes
+        }
+        int skip=0,chance=0;
+        while(q.size()>0){
+            if(skip==0){ // for odd
+                res[q.front()]=deck[chance++];
+                q.pop();
             }
-            indexInResult = (indexInResult+1)%n;
+            else{ // for even
+                q.push(q.front()); 
+                q.pop();
+            }
+            skip = abs(skip-1);
         }
         return res;
     }
