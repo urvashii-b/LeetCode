@@ -21,6 +21,8 @@ public:
             ans[i+n]=nums[i];
         }
         return ans;
+        
+        APPROACH 3 - MODIFYING ORIGINAL ARRAY
         */
         int n = nums.size();
         for(int i=0;i<n;i++){
