@@ -12,11 +12,11 @@
 class Solution {
 private:
     int dfs(TreeNode* curr, int sum){
-        if(!curr){
+        if(!curr){ // null
             return 0;
         }
-        sum = sum*10+curr->val;
-        if(!curr->left && !curr->right){
+        sum = sum*10+curr->val; // according to tens, ones digits
+        if(!curr->left && !curr->right){ //leaf node reached
             return sum;
         }
         return dfs(curr->left, sum)+dfs(curr->right, sum);
