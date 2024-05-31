@@ -28,12 +28,12 @@ public:
         4. optimal but contains tradeoff
         */
         unordered_set<int> freq;
-        for (int i: nums){
+        for(int i:nums){
             if(freq.count(i)>0){
                 return true;
             }
             freq.insert(i);
-        }  
-        return false;  
+        }
+        return false;
     }
 };
