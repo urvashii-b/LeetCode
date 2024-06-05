@@ -13,10 +13,9 @@ public:
                 common[i]=min(cnt[i],common[i]);
             }
         }
-        
         for(auto i=0;i<26;i++){
             for(auto j=0;j<common[i];j++){
-                res.push_back(string(1,i+'a'));
+                res.push_back(string(1,i+'a')); // converting numbers to strings of 1 char
             }
         }
         return res;
