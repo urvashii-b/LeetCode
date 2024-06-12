@@ -55,5 +55,10 @@ public:
             end--;
             right--;
         }
+        while(left>=0){
+            nums1[end]=nums1[left];
+            end--;
+            left--;
+        }
     }
 };
