@@ -22,19 +22,19 @@ public:
         return -1;
         
         3. Moore Voting Algorithm
-        if there is a majority element in an array, it will always remain in the lead, even           after encountering other elements.
+        if there is a majority element in an array, it will always remain in the lead, even after encountering other elements.
         */
-        int cnt = 0, candidate = 0;
+        int cnt = 0, el;
         for(int i:nums){
             if(cnt==0){
-                candidate = i;
+                el = i;
             }
-            if(i==candidate){
+            if(i==el){
                 cnt++;
             }else{
                 cnt--;
             }
         }
-        return candidate;
+        return el;
     }
 };
