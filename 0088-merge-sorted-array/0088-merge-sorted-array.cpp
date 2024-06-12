@@ -35,18 +35,14 @@ public:
         
         3. Without extra space - approach 1
         */
-        int left = m-1;
-        int right = n-1;
-        int end = m+n-1;
+        int left = m-1, right = n-1, end = m+n-1;
         while(left>=0 && right>=0){
             if(nums1[left]>nums2[right]){
                 nums1[end]=nums1[left];
                 left--;
-            }
-            else{
+            }else{
                 nums1[end]=nums2[right];
                 right--;
-               
             }
             end--;
         }
@@ -54,11 +50,6 @@ public:
             nums1[end]=nums2[right];
             end--;
             right--;
-        }
-        while(left>=0){
-            nums1[end]=nums1[left];
-            end--;
-            left--;
         }
     }
 };
