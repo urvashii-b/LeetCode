@@ -13,7 +13,8 @@ public:
             }
         }
         return i ;
-        */
+        
+        
         int j = 1;
         for (int i = 1; i < nums.size(); i++) {
             if (j == 1 || nums[i] != nums[j - 2]) {
@@ -22,5 +23,14 @@ public:
             }
         }
         return j;
+        */
+        int i=0;
+        for(int n:nums){
+            if(i<2 || n>nums[i-2]){
+                nums[i]=n;
+                i++;
+            }
+        }
+        return i;
     }
 };
