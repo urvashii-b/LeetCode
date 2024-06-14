@@ -1,25 +1,26 @@
 class Solution {
 public:
     string convert(string s, int numRows) {
-        int len = s.length();
-        if (numRows <= 1 || numRows>=len) {
+        if (numRows == 1 || numRows >= s.length()) {
             return s;
         }
-        string res = "";
-        int dir = -1, row = 0; // -1: down, 1:up
-        vector<char> a[numRows];
-        for (auto c: s) {
-            a[row].push_back(c);
-            if(row==0 || row==numRows-1){
-                dir*=-1;
+        
+        vector<string> rows(numRows);
+        int curRow = 0;
+        bool goingDown = false;
+
+        for (char c : s) {
+            rows[curRow] += c;
+            if (curRow == 0 || curRow == numRows - 1) {
+                goingDown = !goingDown;
             }
-            row+=dir;
+            curRow += goingDown ? 1 : -1;
         }
-        for(auto x: a){
-            for(auto y:x){
-                res+=y;
-            }
+
+        string result;
+        for (string row : rows) {
+            result += row;
         }
-        return res;
+        return result;
     }
 };
