@@ -1,17 +1,23 @@
 class Solution {
 public:
     string convert(string s, int numRows) {
-        if (numRows == 1) {
+        int len = s.length();
+        if (numRows <= 1 || numRows>=len) {
             return s;
         }
         string res = "";
-        int inc = 2 * (numRows - 1);
-        for (int r = 0; r < numRows; r++) {
-            for (int i = r; i < s.length(); i += inc) {
-                res += s[i];
-                if (r > 0 && r < numRows - 1 && i + inc - 2 * r < s.length()) {
-                    res += s[i + inc - 2 * r];
-                }
+        int dir = -1, row = 0; // -1: down, 1:up
+        vector<char> a[numRows];
+        for (auto c: s) {
+            a[row].push_back(c);
+            if(row==0 || row==numRows-1){
+                dir*=-1;
+            }
+            row+=dir;
+        }
+        for(auto x: a){
+            for(auto y:x){
+                res+=y;
             }
         }
         return res;
