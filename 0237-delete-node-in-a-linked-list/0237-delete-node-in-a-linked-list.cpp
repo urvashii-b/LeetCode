@@ -13,6 +13,5 @@ public:
         ListNode* delNode = node->next;
         node->next = node->next->next;
         delete(delNode);
-        return;
     }
 };
