@@ -1,19 +1,19 @@
-#include<bits/stdc++.h>
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        vector<int> mpp(256,-1);
-        int left=0, right=0;
-        int n=s.size();
-        int len=0;
-        while(right<n){
-            if(mpp[s[right]]!=-1){
-                left = max(mpp[s[right]]+1,left);
+        vector<int> mpp(128,0);
+        int counter=0, begin=0, end=0, ans=0;
+        while(end<s.size()){
+            mpp[s[end]]++;
+            while (mpp[s[end]] > 1) {
+                mpp[s[begin]]--;
+                begin++;
             }
-            mpp[s[right]] = right;
-            len =max(len,right-left+1);
-            right++;
-        }   
-        return len;
+
+            ans = max(ans, end - begin + 1);
+            end++;
+        }
+
+        return ans; 
     }
 };
