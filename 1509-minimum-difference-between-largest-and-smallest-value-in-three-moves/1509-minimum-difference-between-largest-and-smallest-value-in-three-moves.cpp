@@ -7,7 +7,7 @@ public:
         }
         sort(nums.begin(),nums.end());
         int mini = INT_MAX;
-        for(int l = 0, r = n-4; l<4;l++, r++){
+        for(int l = 0, r = n-4; l<=3;l++, r++){
             mini = min(mini, nums[r]-nums[l]);
         }
         return mini;
