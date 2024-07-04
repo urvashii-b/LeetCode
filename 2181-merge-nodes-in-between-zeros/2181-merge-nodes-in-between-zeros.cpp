@@ -22,7 +22,7 @@ public:
             dummy->val = sum;
             temp=temp->next;
             dummy->next = temp;
-            dummy=dummy->next;
+            dummy=temp;
         }
         return head->next;
     }
