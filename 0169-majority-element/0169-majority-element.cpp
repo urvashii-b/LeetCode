@@ -25,11 +25,11 @@ public:
         if there is a majority element in an array, it will always remain in the lead, even after encountering other elements.
         */
         int cnt = 0, el;
-        for(int i:nums){
+        for(int i=0;i<nums.size();i++){
             if(cnt==0){
-                el = i;
+                el = nums[i];
             }
-            if(i==el){
+            if(nums[i]==el){
                 cnt++;
             }else{
                 cnt--;
