@@ -34,7 +34,7 @@ public:
         for(int i=0;i<n;i++){
             int complement = target - nums[i];
             if(freq.count(complement)){
-                return {freq[complement],i};
+                return {i,freq[complement]};
             }
             freq[nums[i]]=i;
         }
