@@ -1,28 +1,31 @@
 class Solution {
 public:
     int myAtoi(string s) {
-        int res=0, n=s.size(), ind = 0;
+        int ans = 0, n = s.size(), index = 0;
         if(n==0) return 0;
-        while(ind<n && s[ind]==' '){    // whitespaces
-            ind++;
+        // ignore whitspaces
+        while(index<n && s[index]==' '){
+            index++;
         }
-        bool neg = false;   // sign
-        if(ind<n){
-            if(s[ind]=='-'){
+        bool neg = false;
+        // positive / negative number
+        if(index<n){
+            if(s[index]=='-'){
                 neg = true;
-                ind++;
-            }else if(s[ind]=='+'){
-                ind++;
+                index++;
+            } else if(s[index]=='+'){
+                index++;
             }
         }
-        while(ind<n && isdigit(s[ind])){
-            int digit = s[ind]-'0';
-            if(res>(INT_MAX/10) || (res==(INT_MAX/10) && digit>7)){
-                return neg? INT_MIN: INT_MAX;
+        while(index<n && isdigit(s[index])){
+            int digit = s[index]-'0';
+            // limits crossed
+            if(ans>INT_MAX/10 || (ans==INT_MAX/10 && digit>7)){
+                return neg? INT_MIN : INT_MAX;
             }
-            res= res*10+digit;
-            ind++;
+            ans = ans*10 + digit;
+            index++;
         }
-        return neg? -res:res;
+        return neg? -ans :ans;
     }
 };
