@@ -10,18 +10,18 @@ public:
         }
         return 0;
         */
-        int n = nums.size(), ans = INT_MAX;
-        int low = 0, high = n-1;
-        while(low<=high){
-            int mid = (low+high)/2;
-            if(nums[low]<=nums[mid]){
-                ans = min(ans,nums[low]);
-                low = mid+1;
-            }else{
-                ans = min(ans,nums[mid]);
-                high = mid-1;
+        int mini = INT_MAX, n = nums.size();
+        int l=0, r=n-1;
+        while(l<=r){
+            int mid = (l+r)/2;
+            if(nums[l]<=nums[mid]){ // left portion (right to be checked)
+                mini = min(mini, nums[l]);
+                l=mid+1;
+            }else{  // mid portion (left to be checked)
+                mini = min(mini, nums[mid]);
+                r=mid-1;
             }
         }
-        return ans;
+        return mini;
     }
 };
