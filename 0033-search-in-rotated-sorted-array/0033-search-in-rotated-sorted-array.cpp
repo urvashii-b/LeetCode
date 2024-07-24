@@ -15,8 +15,8 @@ public:
         while(low<=high){
             int mid = (low+high)/2;
             if(target==nums[mid]) return mid;
-            if(nums[low]<=nums[mid]){    // left sorted
-                if(target>nums[mid] || nums[low]>target){
+            if(nums[low]<=nums[mid]){       // left sorted
+                if(target>nums[mid] || target<nums[low]){
                     low = mid+1;
                 }else{
                     high = mid-1;
