@@ -2,8 +2,8 @@ struct Node{
     Node* links[26];
     bool flag = false;
     
-    bool containsKey(char ch){
-        return links[ch-'a']!=NULL;
+    bool hasKey(char ch){
+        return (links[ch-'a']!=NULL);
     }
     
     void put(char ch, Node* node){
@@ -21,48 +21,48 @@ struct Node{
     bool isEnd(){
         return flag;
     }
+    
 };
-
 class Trie {
 private:
     Node* root;
 public:
-    Trie() {
-        root = new Node();
-    }
-    
-    void insert(string word) {
-        Node* node = root;
-        for(int i=0;i<word.length();i++){
-            if(!node->containsKey(word[i])){
-                node->put(word[i],new Node());
-            }
-            node=node->get(word[i]);
+    Trie(){
+            root = new Node();
         }
-        node->setEnd();
-    }
-    
-    bool search(string word) {
-        Node* node = root;
-        for(int i=0;i<word.length();i++){
-            if(!node->containsKey(word[i])){
-                return false;
+
+        void insert(string word){
+            Node* node = root;
+            for(int i=0;i<word.length();i++){
+                if(!node->hasKey(word[i])){
+                    node->put(word[i],new Node());
+                }
+                node = node->get(word[i]);
             }
-            node = node->get(word[i]);
+            node->setEnd();
         }
-        return node->isEnd();
-    }
-    
-    bool startsWith(string prefix) {
-        Node* node = root;
-        for(int i=0;i<prefix.length();i++){
-            if(!node->containsKey(prefix[i])){
-                return false;
+
+        bool search(string word){
+            Node* node = root;
+            for(int i=0;i<word.length();i++){
+                if(!node->hasKey(word[i])){
+                    return false;
+                }
+                node = node->get(word[i]);
             }
-            node = node->get(prefix[i]);
+            return node->isEnd();
         }
-        return true;
-    }
+
+        bool startsWith(string prefix){
+            Node* node = root;
+            for(int i=0;i<prefix.length();i++){
+                if(!node->hasKey(prefix[i])){
+                    return false;
+                }
+                node = node->get(prefix[i]);
+            }
+            return true;
+        }
 };
 
 /**
