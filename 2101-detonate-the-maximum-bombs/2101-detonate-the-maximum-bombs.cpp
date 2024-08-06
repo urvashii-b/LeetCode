@@ -33,7 +33,7 @@ public:
                 LL d2 = y2-y1;
                 LL d = d1*d1+d2*d2;
                 
-                if(r1*r1>=d){
+                if((LL)r1*r1>=d){
                     adj[i].push_back(j);
                 }
             }
