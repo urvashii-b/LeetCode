@@ -8,6 +8,24 @@ private:
             }
         }
     }
+    
+    int Bfs(int node, unordered_map<int,vector<int>> &adj){
+        unordered_set<int> vis;
+        queue<int> q;
+        vis.insert(node);
+        q.push(node);
+        while(!q.empty()){
+            int ele = q.front();
+            q.pop();
+            for(int &v: adj[ele]){
+                if(vis.find(v)==vis.end()){
+                    q.push(v);
+                    vis.insert(v);
+                }
+            }
+        }
+        return vis.size();
+    }
 public:
     typedef long long LL;
     int maximumDetonation(vector<vector<int>>& bombs) {
@@ -39,12 +57,13 @@ public:
             }
         }
         int res=0;
-        unordered_set<int> vis;
+        //unordered_set<int> vis;
         for(int i=0;i<n;i++){
-            dfs(i,vis,adj);
-            int cnt = vis.size();
+            //dfs(i,vis,adj);
+            int cnt = Bfs(i,adj);
+            //int cnt = vis.size();
             res = max(res,cnt);
-            vis.clear();
+            //vis.clear();
         }
         return res;
     }
