@@ -1,23 +1,22 @@
 class Solution {
 private:
-    void DFS(int row, int col, vector<vector<bool>> &vis, vector<vector<int>>& grid, int n, int m){
-        if(row<0 || col<0 || row>=n || col>=m || vis[row][col]==true || grid[row][col]==0){
+    void DFS(vector<vector<int>>& grid, vector<vector<bool>> &vis, int i, int j, int n, int m){
+        if(i<0 || j<0 || i>=n || j>=m || grid[i][j]==0 || vis[i][j]==true){
             return;
         }
-        vis[row][col]=true;
-        DFS(row+1,col,vis,grid, n, m);
-        DFS(row-1,col,vis,grid, n, m);
-        DFS(row,col+1,vis,grid, n, m);
-        DFS(row,col-1,vis,grid, n, m);
+        vis[i][j]=true;
+        DFS(grid,vis,i+1,j,n,m);
+        DFS(grid,vis,i-1,j,n,m);
+        DFS(grid,vis,i,j+1,n,m);
+        DFS(grid,vis,i,j-1,n,m);
     }
-    
-    int numberOfIslands(vector<vector<int>>& grid, int n, int m){
+    int numOfIslands(vector<vector<int>>& grid, int n, int m){
         int islands = 0;
         vector<vector<bool>> vis(n, vector<bool> (m));
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(grid[i][j]==1 && !vis[i][j]){
-                    DFS(i,j,vis,grid, n, m);
+                    DFS(grid,vis,i,j,n,m);
                     islands++;
                 }
             }
@@ -27,17 +26,16 @@ private:
 public:
     int minDays(vector<vector<int>>& grid) {
         int n = grid.size(), m = grid[0].size();
-        int islands = numberOfIslands(grid,n,m);
-        if(islands>1 || islands == 0){
+        int islands = numOfIslands(grid, n, m);
+        if(islands>1 || islands ==0){
             return 0;
         }else{
             for(int i=0;i<n;i++){
                 for(int j=0;j<m;j++){
                     if(grid[i][j]==1){
                         grid[i][j]=0;
-                        
-                        islands = numberOfIslands(grid,n,m);
-                        if(islands==0 || islands>1){
+                        islands = numOfIslands(grid, n, m);
+                        if(islands>1 || islands ==0){
                             return 1;
                         }
                         grid[i][j]=1;
