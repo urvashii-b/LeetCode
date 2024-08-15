@@ -1,44 +1,33 @@
-class MedianFinder {
+class MedianFinder{
 public:
-    priority_queue<int> maxheap;
-    priority_queue<int,vector<int>,greater<int>> minheap;
-    MedianFinder() {
-        
+    priority_queue<int> left_maxpq;     // max heap
+    priority_queue<int,vector<int>,greater<int>> right_minpq;       // min heap
+    MedianFinder(){
+
     }
-    
-    void addNum(int num) {
-        if(maxheap.empty() || maxheap.top()>num){
-            maxheap.push(num);
+    void addNum(int num){
+        if(left_maxpq.empty() || num<left_maxpq.top()){
+            left_maxpq.push(num);
         }else{
-            minheap.push(num);
+            right_minpq.push(num);
         }
-        if(maxheap.size()>minheap.size()+1){
-            minheap.push(maxheap.top());
-            maxheap.pop();
-            
-        }else if(minheap.size()>maxheap.size()+1){
-            maxheap.push(minheap.top());
-            minheap.pop();
+        if(left_maxpq.size()>right_minpq.size()+1){
+            int ele = left_maxpq.top();
+            left_maxpq.pop();
+            right_minpq.push(ele);
+        }else if(left_maxpq.size()<right_minpq.size()){
+            int ele = right_minpq.top();
+            right_minpq.pop();
+            left_maxpq.push(ele);
         }
     }
-    
-    double findMedian() {
-        if(maxheap.size()==minheap.size()){
-            if(maxheap.empty()){
-                return 0;
-            }else{
-                double avg = (maxheap.top()+minheap.top())/2.0;
-                return avg;
-            }
-        }else{
-            return maxheap.size()>minheap.size()?maxheap.top():minheap.top();
+    double findMedian(){
+        if(left_maxpq.size()==right_minpq.size()){
+            int ele1 = left_maxpq.top();
+            int ele2 = right_minpq.top();
+            double sum = (ele1+ele2)/2.0;
+            return sum;
         }
+        return left_maxpq.top();
     }
 };
-
-/**
- * Your MedianFinder object will be instantiated and called as such:
- * MedianFinder* obj = new MedianFinder();
- * obj->addNum(num);
- * double param_2 = obj->findMedian();
- */
