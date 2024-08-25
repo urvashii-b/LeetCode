@@ -9,23 +9,33 @@ public:
             return;
         }
         int mid = (l+r)/2;
-        buildSegmentTree(2*i+1,l,mid,nums);
-        buildSegmentTree(2*i+2,mid+1,r,nums);
+        buildSegmentTree(2*i+1, l, mid, nums);
+        buildSegmentTree(2*i+2, mid+1, r, nums);
         segmentTree[i]=segmentTree[2*i+1]+segmentTree[2*i+2];
     }
     
-    void updateSegmentTree(int index, int val, int i, int l, int r){
+    NumArray(vector<int>& nums) {
+        n = nums.size();
+        segmentTree.resize(4*n);
+        buildSegmentTree(0,0,n-1,nums);
+    }
+    
+    void updateSegmentTree(int idx, int val, int i, int l, int r){
         if(l==r){
             segmentTree[i]=val;
             return;
         }
         int mid = (l+r)/2;
-        if(index<=mid){
-            updateSegmentTree(index,val,2*i+1,l,mid);
+        if(idx<=mid){
+            updateSegmentTree(idx,val,2*i+1,l,mid);
         }else{
-            updateSegmentTree(index,val,2*i+2,mid+1,r);
+            updateSegmentTree(idx,val,2*i+2,mid+1,r);
         }
         segmentTree[i]=segmentTree[2*i+1]+segmentTree[2*i+2];
+    }
+    
+    void update(int index, int val) {
+        updateSegmentTree(index,val,0,0,n-1);
     }
     
     int Query(int start, int end, int i, int l, int r){
@@ -37,16 +47,6 @@ public:
         }
         int mid = (l+r)/2;
         return Query(start,end,2*i+1,l,mid)+Query(start,end,2*i+2,mid+1,r);
-    }
-    
-    NumArray(vector<int>& nums) {
-        n = nums.size();
-        segmentTree.resize(4*n);
-        buildSegmentTree(0,0,n-1,nums);
-    }
-    
-    void update(int index, int val) {
-        updateSegmentTree(index,val,0,0,n-1);
     }
     
     int sumRange(int left, int right) {
