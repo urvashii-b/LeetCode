@@ -10,19 +10,38 @@
  */
 class Solution {
 public:
-    vector<int> arr;
+//     vector<int> arr;
+//     Solution(ListNode* head) {
+//         ListNode* temp = head;
+//         while(temp!=NULL){
+//             arr.push_back(temp->val);
+//             temp=temp->next;
+//         }
+//     }
+    
+//     int getRandom() {
+//         int n = arr.size();
+//         int random_index = rand()%n;
+//         return arr[random_index];
+//     }
+    
+    // reservoir sampling
+    ListNode* HEAD;
     Solution(ListNode* head) {
-        ListNode* temp = head;
+        HEAD = head;
+    }
+    int getRandom() {
+        int cnt = 1;
+        int res = 0;
+        ListNode* temp = HEAD;
         while(temp!=NULL){
-            arr.push_back(temp->val);
+            if(rand()%cnt<(1.0/cnt)){
+                res = temp->val;
+            }
+            cnt++;
             temp=temp->next;
         }
-    }
-    
-    int getRandom() {
-        int n = arr.size();
-        int random_index = rand()%n;
-        return arr[random_index];
+        return res;
     }
 };
 
