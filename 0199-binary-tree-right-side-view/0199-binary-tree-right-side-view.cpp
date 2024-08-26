@@ -11,15 +11,15 @@
  */
 class Solution {
 private:
-    void preOrder(TreeNode* root, int level, vector<int> &res){
+    void levels(TreeNode* root, vector<int> &res, int level){
         if(root==NULL){
             return;
         }
-        if(res.size()<level){
+        if(res.size()==level){
             res.push_back(root->val);
         }
-        preOrder(root->right,level+1,res);
-        preOrder(root->left,level+1,res);
+        levels(root->right,res,level+1);
+        levels(root->left,res,level+1);
     }
 public:
     vector<int> rightSideView(TreeNode* root) {     // level order traversal
@@ -40,7 +40,7 @@ public:
         // }
         // return res;
         vector<int> res;
-        preOrder(root,1,res);
+        levels(root,res,0);
         return res;
     }
 };
