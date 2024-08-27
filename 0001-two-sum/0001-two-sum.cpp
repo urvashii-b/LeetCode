@@ -2,7 +2,6 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         /* 1. Brute Force
-       
         int n=nums.size();
         for(int i=0;i<n-1;i++){
             for(int j=i+1;j<n;j++){
@@ -33,8 +32,8 @@ public:
         unordered_map<int,int> freq;
         for(int i=0;i<n;i++){
             int complement = target - nums[i];
-            if(freq.count(complement)){
-                return {i,freq[complement]};
+            if(freq.find(complement)!=freq.end()){
+                return {i, freq[complement]};
             }
             freq[nums[i]]=i;
         }
