@@ -1,36 +1,36 @@
 class Solution {
 private:
-    void dfs(string digits, int index, unordered_map<char,string> &m, string &cur, vector<string> &res){
-        if(index==digits.size()){
-            res.push_back(cur);
+    void solve(vector<string> &res, string &temp, int index, string &digits, unordered_map<char,string> &mpp){
+        if(index>=digits.size()){
+            res.push_back(temp);
             return;
         }
-        string str = m[digits[index]];
-        for(int i=0;i<str.size();i++){
-            cur.push_back(str[i]);
-            dfs(digits,index+1,m,cur,res);
-            cur.pop_back();
+        char c = digits[index];
+        string s = mpp[c];
+        for(int i=0;i<s.length();i++){
+            temp.push_back(s[i]);
+            solve(res,temp,index+1,digits,mpp);
+            temp.pop_back();
         }
     }
     
 public:
     vector<string> letterCombinations(string digits) {
-        if(digits.empty()){
+        if(digits.length()==0){
             return {};
         }
-        unordered_map<char,string> m = {
-            {'2',"abc"},
-            {'3', "def"},
-            {'4', "ghi"},
-            {'5', "jkl"},
-            {'6', "mno"},
-            {'7', "pqrs"},
-            {'8', "tuv"},
-            {'9', "wxyz"}
-        };
-        string cur = "";
+        unordered_map<char,string> mpp;
+        mpp['2']="abc";
+        mpp['3']="def";
+        mpp['4']="ghi";
+        mpp['5']="jkl";
+        mpp['6']="mno";
+        mpp['7']="pqrs";
+        mpp['8']="tuv";
+        mpp['9']="wxyz";
         vector<string> res;
-        dfs(digits,0,m,cur,res);
+        string temp = "";
+        solve(res,temp,0,digits,mpp);
         return res;
     }
 };
