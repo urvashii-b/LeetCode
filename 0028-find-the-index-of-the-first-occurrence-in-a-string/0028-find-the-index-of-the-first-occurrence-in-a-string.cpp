@@ -11,7 +11,7 @@ public:
                         break;
                     }
                 }
-                if(flag){
+                if(flag == true){
                     return i;
                 }
             }
