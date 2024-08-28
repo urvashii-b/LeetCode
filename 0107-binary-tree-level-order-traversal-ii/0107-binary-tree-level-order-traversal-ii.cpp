@@ -26,9 +26,8 @@ public:
                 if(node->right!=NULL) q.push(node->right); 
                 lvl.push_back(node->val);
             }
-            ans.push_back(lvl);
+            ans.insert(ans.begin(),lvl);
         }
-        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
