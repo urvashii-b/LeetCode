@@ -1,8 +1,7 @@
 class Solution {
 private:
     bool solve(string &text, string &pattern, int i, int j, vector<vector<int>> &dp){
-        if(j<0) return i<0;   // if path is done, and the string is also done 
-        if(j<0) return false;
+        if(j<0) return i<0;   // if pattern is done, and the string is also done 
         if(i<0 && j>=0){ //string exhausted but matchings left
             if(pattern[j]=='*'){
                 return solve(text,pattern,i,j-2,dp);
