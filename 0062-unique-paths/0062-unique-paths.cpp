@@ -1,5 +1,6 @@
 class Solution {
 /*
+1. RECURSION
 private:
     int countPaths(int i, int j, int m, int n){
         if((i==m-1) && (j==n-1)) return 1;
@@ -11,6 +12,8 @@ public:
         // m = rows, n = cols
         return countPaths(0,0,m,n);
     }
+    
+2. DP
 */
 private:
     int countPaths(int i, int j, int m, int n, vector<vector<int>> &dp){
