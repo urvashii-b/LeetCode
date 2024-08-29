@@ -19,9 +19,11 @@ public:
         if(indices.find(val)==indices.end()){
             return false;
         }
-        int index = indices[val];
-        indices[values[values.size()-1]] = index; // mpp[a[last]]=index
-        values[index]=values[values.size()-1];
+        int index = indices[val]; // idx = mpp[val]
+        int lastElement = values.back();
+        values.back()=val;
+        values[index] = lastElement;
+        indices[lastElement] = index;
         values.pop_back();
         indices.erase(val);
         return true;
