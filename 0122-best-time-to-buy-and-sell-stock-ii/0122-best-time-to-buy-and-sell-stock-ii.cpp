@@ -1,24 +1,27 @@
 class Solution {
 private:
-    int f(int index, int canBuy, vector<int>& prices, vector<vector<int>> &dp, int n){
+    int solve(vector<int>& prices, int buy, int index, int n, vector<vector<int>> &dp){
         if(index==n){
             return 0;
         }
         int profit = 0;
-        if(dp[index][canBuy]!=-1) return dp[index][canBuy];
-        if(canBuy){
-            profit = max((-prices[index]+f(index+1,0,prices,dp,n)),
-                         (0+f(index+1,1,prices,dp,n)));
-        }else{
-            profit = max((prices[index]+f(index+1,1,prices,dp,n)),
-                         (0+f(index+1,0,prices,dp,n)));
+        if(dp[index][buy]!=-1) return dp[index][buy];
+        if(buy){
+            profit = max(-prices[index]+solve(prices,0,index+1,n,dp), 
+                         0+solve(prices,1,index+1,n,dp));
         }
-        return dp[index][canBuy] = profit;
+        else{
+            profit = max(prices[index]+solve(prices,1,index+1,n,dp), 
+                         0+solve(prices,0,index+1,n,dp));
+        }
+        return dp[index][buy] = profit;
     }
 public:
     int maxProfit(vector<int>& prices) {
-        int n = prices.size();
-        vector<vector<int>> dp(n,vector<int> (2,-1));
-        return f(0,1,prices,dp, n);
+        // canBuy --> 1 yes ---> 0 no
+        // when you buy you add -prices[i] to the answer wherease when you sell you add prices[i]
+        int n = prices.size(), canBuy = 1, index = 0;
+        vector<vector<int>> dp(n+1,vector<int> (2,-1));
+        return solve(prices,canBuy,index,n,dp);
     }
 };
