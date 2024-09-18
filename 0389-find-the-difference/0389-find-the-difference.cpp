@@ -28,7 +28,7 @@ public:
         }
         return (char)sum;
         
-        3. sorting
+        3. sorting - loglinear time, constant space
         sort(s.begin(),s.end());
         sort(t.begin(),t.end());
         int n = s.length();
@@ -37,7 +37,7 @@ public:
                 return t[i];
             }
         }
-        return t[n];
+        return t[n]; // never reaches here
         
         4. xor - linear time, constant space
         */
