@@ -12,8 +12,8 @@ public:
         }
         return s.length();
         
+        
         O(n)
-        */
         stack<char> st;
         for(char c: s){
             char curr = c;
@@ -30,5 +30,19 @@ public:
             }
         }
         return st.size();
+        
+        O(n)
+        */
+        int write = 0;
+        vector<char> charArr(s.begin(),s.end());
+        for(int read = 0; read<s.length(); read++){
+            charArr[write]=charArr[read];
+            if(write>0 && (charArr[write-1]=='A' || charArr[write-1]=='C') && (charArr[write]==charArr[write-1]+1)){
+                write--;
+            }else{
+                write++;
+            }
+        }
+        return write;
     }
 };
